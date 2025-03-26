@@ -13,24 +13,21 @@ $(document).ready(function() {
             saveTasks(); // Save to server via AJAX
         }
     });
-
     // Mark task as completed
     $('#task-list').on('click', 'li', function() {
         $(this).toggleClass('completed');
         saveTasks(); // Save to server via AJAX
     });
-
     // Edit task
     $('#task-list').on('click', '.edit', function(e) {
         e.stopPropagation();
         let taskText = $(this).siblings('.task-text').text();
         let newTaskText = prompt('Edit Task:', taskText);
         if (newTaskText) {
-            $(this).siblings('.task-text').text(newTaskText);
-            saveTasks(); // Save to server via AJAX
+        $(this).siblings('.task-text').text(newTaskText);
+        saveTasks(); // Save to server via AJAX
         }
     });
-
     // Delete task
     $('#task-list').on('click', '.delete', function(e) {
         e.stopPropagation();
@@ -39,7 +36,6 @@ $(document).ready(function() {
             saveTasks(); // Save to server via AJAX
         });
     });
-
     // Save task list to the server via AJAX
     function saveTasks() {
         let tasks = [];
@@ -49,7 +45,6 @@ $(document).ready(function() {
                 completed: $(this).hasClass('completed')
             });
         });
-
         $.ajax({
             url: 'saveTasks.php', // Replace with your server-side script
             method: 'POST',
@@ -59,7 +54,6 @@ $(document).ready(function() {
             }
         });
     }
-
     // Load tasks from server on page load
     function loadTasks() {
         $.ajax({
@@ -78,7 +72,6 @@ $(document).ready(function() {
             }
         });
     }
-
     // Load tasks when the page loads
     loadTasks();
 });
